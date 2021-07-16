@@ -1,9 +1,9 @@
-# Outline
+## Outline
 
 todo-list-react is a web application created using React, which allows users to manage their workload by creating and editing a task tracking list.
 
 
-# Getting Started
+## Getting Started
 
 The application is supported on Google Chrome, Mozilla Firefox and Microsoft Edge. 
 Ensure at least one of these is downloaded and set as the default browser. 
