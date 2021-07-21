@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react'
+import TaskList from './components/TaskList'
 
 function App() {
+
+  var initialState = [
+    {
+      id: 1,
+      text: "Finish JIRA boards"
+    },
+    {
+      id: 2,
+      text: "Update readme to reflect changes"
+    },
+    {
+      id:3,
+      text: "Test ML model on new data"
+    },
+    {
+      id:4,
+      text: "Submit holiday request"
+    }
+  ];
+
+  const [tasks] = useState(initialState);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TaskList taskArray={tasks}/>
     </div>
-  );
-}
+  )
+};
 
 export default App;
