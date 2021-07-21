@@ -27,7 +27,6 @@ function App() {
 
   function updateTasks(newTask) {
     const updatedTasks = [...tasks, {id:tasks.length+1, text:newTask}]
-    console.log(updatedTasks)
     setTasks(updatedTasks)
   }
 
