@@ -23,7 +23,7 @@ function App() {
 
   return (
     <div className="App">
-      <TaskList tasks={tasks}/>
+      <TaskList task_array={tasks}/>
     </div>
   );
 }

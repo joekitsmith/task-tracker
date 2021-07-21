@@ -3,20 +3,23 @@ import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 
-const TaskList = ({ tasks }) => {
+const TaskList = ({ task_array }) => {
+    if (!task_array || !task_array.length) {
+        return <div>"No tasks"</div>
+    }
     return (
         <List>
-            {tasks.map((task) => (
-                <ListItem key={task.id}>
-                    <ListItemText id={task.id} primary={task.text}/>
+            {task_array.map((task, id) => (
+                <ListItem key={id}>
+                    <ListItemText id={id} primary={task.text} data-testid='task'/>
                 </ListItem>
             ))}
         </List>
     )
-}
+};
 
 TaskList.propTypes = {
-    tasks: PropTypes.string
+    tasks: PropTypes.array
 }
 
 export default TaskList
