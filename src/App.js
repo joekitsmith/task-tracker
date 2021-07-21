@@ -23,12 +23,18 @@ function App() {
     }
   ]
 
-  const [tasks] = useState(initialState)
+  const [tasks, setTasks] = useState(initialState)
+
+  function updateTasks(newTask) {
+    const updatedTasks = [...tasks, {id:tasks.length+1, text:newTask}]
+    console.log(updatedTasks)
+    setTasks(updatedTasks)
+  }
 
   return (
     <div>
       <TaskList taskArray={tasks}/>
-      <AddTask/>
+      <AddTask onAdd={updateTasks}/>
     </div>
   )
 }

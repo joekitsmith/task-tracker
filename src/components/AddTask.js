@@ -4,12 +4,14 @@ import Dialog from "@material-ui/core/Dialog"
 import DialogTitle from "@material-ui/core/DialogTitle"
 import DialogContent from '@material-ui/core/DialogContent'
 import TextField from "@material-ui/core/TextField"
+import DialogActions from '@material-ui/core/DialogActions'
 
-function AddTask() {
+function AddTask({ onAdd }) {
 
     const [open, setOpen] = React.useState(false)
+    const [text, setText] = React.useState("")
 
-    const handleClickOpen = () => {
+    const handleOpen = () => {
         setOpen(true)
     }
 
@@ -17,19 +19,34 @@ function AddTask() {
         setOpen(false)
     }
 
+    const handleAdd = () => {
+        onAdd(text)
+        setOpen(false)
+    }
+
     return (
         <div>
-            <Button onClick={handleClickOpen}>
+            <Button onClick={handleOpen}>
                 Add task
             </Button>
-            <Dialog open ={open} onClose={handleClose}>
-                <DialogTitle>
-                    Add task
-                </DialogTitle>
-                <DialogContent>
-                    <TextField id="new_task" style={{ margin:20 }}/>
-                </DialogContent>
-            </Dialog>
+            <form id='addTask' onSubmit={handleAdd} action="#">
+                <Dialog open ={open} onClose={handleClose}>
+                    <DialogTitle>
+                        Add task
+                    </DialogTitle>
+                    <DialogContent>
+                        <TextField 
+                            style={{ margin:20 }}
+                            onChange={(event)=>{setText(event.target.value)}}
+                            />
+                    </DialogContent>
+                    <DialogActions>
+                        <Button form='addTask' autoFocus type="submit">
+                            Add
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </form>
         </div>
     )
 }
