@@ -29,24 +29,22 @@ function AddTask({ onAdd }) {
             <Button onClick={handleOpen}>
                 Add task
             </Button>
-            <form id='addTask' onSubmit={handleAdd} action="#">
-                <Dialog open ={open} onClose={handleClose}>
-                    <DialogTitle>
-                        Add task
-                    </DialogTitle>
-                    <DialogContent>
-                        <TextField 
-                            style={{ margin:20 }}
-                            onChange={(event)=>{setText(event.target.value)}}
-                            />
-                    </DialogContent>
-                    <DialogActions>
-                        <Button form='addTask' autoFocus type="submit">
-                            Add
-                        </Button>
-                    </DialogActions>
-                </Dialog>
-            </form>
+            <Dialog open ={open} onClose={handleClose}>
+                <DialogTitle>
+                    Add task
+                </DialogTitle>
+                <DialogContent>
+                    <TextField 
+                        style={{ margin:15 }}
+                        onChange={(event)=>{setText(event.target.value)}}
+                        />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleAdd}>
+                        Add
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </div>
     )
 }
