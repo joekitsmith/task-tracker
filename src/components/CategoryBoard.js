@@ -10,28 +10,27 @@ const useStyles = makeStyles(() => ({
         flexDirection: 'column',
         height: 550,
         width: 400,
-        border: "3px solid black",
-        borderRadius: 20
+        border: "2px solid black",
     },
     headerBox: {
         flex: 1,
         height: 100,
-        backgroundColor: '#009ce2',
-        borderBottom: "3px solid black",
-        borderTopRightRadius: 17,
-        borderTopLeftRadius: 17,
+        backgroundColor: '#83d6f2',
+        borderBottom: "2px solid black",
         fontSize: 32,
         textAlign: 'center'
     },
     bodyBox: {
         flex: 8,
         padding: 10,
-        height: 400
+        height: 400,
+        backgroundColor: '#f6f6f9'
     },
     addBox: {
         flex: 1,
         textAlign: 'center',
-        height: 50
+        height: 50,
+        backgroundColor: '#f6f6f9'
     }
 }))
 
