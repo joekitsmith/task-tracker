@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import TaskList from './components/TaskList'
-import AddTask from './components/AddTask'
+import CategoryBoard from './components/CategoryBoard'
 
 function App() {
 
@@ -32,8 +31,7 @@ function App() {
 
   return (
     <div>
-      <TaskList taskArray={tasks}/>
-      <AddTask onAdd={updateTasks}/>
+      <CategoryBoard categoryTitle='General' taskArray={tasks} addTask={updateTasks}/>
     </div>
   )
 }
