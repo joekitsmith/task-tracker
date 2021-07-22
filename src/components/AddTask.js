@@ -6,7 +6,6 @@ import DialogTitle from "@material-ui/core/DialogTitle"
 import DialogContent from '@material-ui/core/DialogContent'
 import TextField from "@material-ui/core/TextField"
 import DialogActions from '@material-ui/core/DialogActions'
-import { mergeClasses } from '@material-ui/styles'
 
 const useStyles = makeStyles({
     text: {
