@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import TaskList from './components/TaskList'
+import AddTask from './components/AddTask'
 
 function App() {
 
-  var initialState = [
+  const initialState = [
     {
       id: 1,
       text: "Finish JIRA boards"
@@ -20,15 +21,21 @@ function App() {
       id:4,
       text: "Submit holiday request"
     }
-  ];
+  ]
 
-  const [tasks] = useState(initialState);
+  const [tasks, setTasks] = useState(initialState)
+
+  function updateTasks(newTask) {
+    const updatedTasks = [...tasks, {id:tasks.length+1, text:newTask}]
+    setTasks(updatedTasks)
+  }
 
   return (
-    <div className="App">
+    <div>
       <TaskList taskArray={tasks}/>
+      <AddTask onAdd={updateTasks}/>
     </div>
   )
-};
+}
 
-export default App;
+export default App

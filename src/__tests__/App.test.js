@@ -1,6 +1,7 @@
 import { render } from '@testing-library/react';
 import App from '../App';
 
-it('renders without crashing', () => {
+test("updateTask function called", () => {
+  // How to check that updateTasks function adds task to tasks array? //
   render(<App/>)
-});
+})

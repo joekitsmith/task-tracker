@@ -16,7 +16,7 @@ const TaskList = ({ taskArray }) => {
             ))}
         </List>
     )
-};
+}
 
 TaskList.propTypes = {
     tasks: PropTypes.array
