@@ -34,7 +34,7 @@ const useStyles = makeStyles(() => ({
     }
 }))
 
-function CategoryBoard({ categoryTitle, taskArray, addTask }) {
+function CategoryBoard({ categoryTitle, taskArray}) {
 
     const classes = useStyles()
 
@@ -47,7 +47,7 @@ function CategoryBoard({ categoryTitle, taskArray, addTask }) {
                 <TaskList taskArray={taskArray}/>
             </div>
             <div className={classes.addBody} data-testid='addBody'>
-                <AddTask onAdd={addTask}/>
+                <AddTask/>
             </div>
         </div>
     )

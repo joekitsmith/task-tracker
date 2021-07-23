@@ -1,4 +1,7 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { bindActionCreators } from "redux"
+import { actionCreators } from "../state/index"
 import { makeStyles } from '@material-ui/core/styles'
 import Button from "@material-ui/core/Button"
 import Dialog from "@material-ui/core/Dialog"
@@ -13,9 +16,12 @@ const useStyles = makeStyles({
     },
 })
 
-function AddTask({ onAdd }) {
+function AddTask() {
 
     const classes = useStyles()
+
+    const dispatch = useDispatch()
+    const { addTaskToList } = bindActionCreators(actionCreators, dispatch)
 
     const [open, setOpen] = React.useState(false)
     const [text, setText] = React.useState("")
@@ -29,7 +35,7 @@ function AddTask({ onAdd }) {
     }
 
     const handleAdd = () => {
-        onAdd(text)
+        addTaskToList(text)
         setOpen(false)
     }
 
