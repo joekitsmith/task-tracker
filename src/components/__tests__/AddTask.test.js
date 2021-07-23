@@ -27,6 +27,7 @@ test("click Add button with filled text field closes dialog", () => {
     const textField = getByTestId('newTask').querySelector('input')
     fireEvent.change(textField, {target: { value: "example task"}})
     fireEvent.click(getByTestId('addButton'))
+    fireEvent.click(getByTestId('addButton'))
     expect(dialog).toBeInTheDocument()
 })
 
