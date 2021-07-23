@@ -1,21 +1,4 @@
-const initialState = [
-    {
-      id: 1,
-      text: "Finish JIRA boards"
-    },
-    {
-      id: 2,
-      text: "Update readme to reflect changes"
-    },
-    {
-      id:3,
-      text: "Test ML model on new data"
-    },
-    {
-      id:4,
-      text: "Submit holiday request"
-    }
-  ]
+import initialState from '../initial-task-list.json'
 
 const taskReducer = (
     state = initialState,
