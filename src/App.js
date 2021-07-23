@@ -1,37 +1,19 @@
-import { useState } from 'react'
-import CategoryBoard from './components/CategoryBoard'
+import { useSelector, useDispatch } from 'react-redux'
+import { bindActionCreators } from "redux"
+import { actionCreators } from "./state/index"
+import CategoryBoard from "./components/CategoryBoard"
 
 function App() {
 
-  const initialState = [
-    {
-      id: 1,
-      text: "Finish JIRA boards"
-    },
-    {
-      id: 2,
-      text: "Update readme to reflect changes"
-    },
-    {
-      id:3,
-      text: "Test ML model on new data"
-    },
-    {
-      id:4,
-      text: "Submit holiday request"
-    }
-  ]
+  const state = useSelector((state) => state.tasks)
 
-  const [tasks, setTasks] = useState(initialState)
+  const dispatch = useDispatch()
 
-  function updateTasks(newTask) {
-    const updatedTasks = [...tasks, {id:tasks.length+1, text:newTask}]
-    setTasks(updatedTasks)
-  }
+  const { addTaskToList } = bindActionCreators(actionCreators, dispatch)
 
   return (
     <div>
-      <CategoryBoard categoryTitle='General' taskArray={tasks} addTask={updateTasks}/>
+      <CategoryBoard categoryTitle="General" taskArray={state} addTask={addTaskToList}/>
     </div>
   )
 }
