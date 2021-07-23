@@ -1,13 +1,12 @@
 import React from 'react'
-import { fireEvent, render, screen } from "@testing-library/react"
+import { fireEvent, render } from "@testing-library/react"
 import "@testing-library/jest-dom/extend-expect"
 import AddTask from '../AddTask'
 
 test("dialog opens when Add Task button clicked", () => {
     const { getByTestId } = render(<AddTask/>)
     fireEvent.click(getByTestId('dialogButton'))
-    const dialog = getByTestId('dialog')
-    expect(dialog).toBeInTheDocument()
+    expect(getByTestId('dialog')).toBeInTheDocument()
 })
 
 test("input of new task string updates text field", () => {
