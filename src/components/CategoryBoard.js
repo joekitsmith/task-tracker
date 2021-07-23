@@ -40,14 +40,14 @@ function CategoryBoard({ categoryTitle, taskArray, addTask }) {
 
     return (
         <div className={classes.board} data-testid='board'>
-            <Typography className={classes.header} data-testid='header'>
+            <Typography className={classes.header}>
                 {categoryTitle}
             </Typography> 
-            <div className={classes.taskBody} data-testid='taskBody'>
-                <TaskList taskArray={taskArray} data-testid='taskList'/>
+            <div className={classes.taskBody}>
+                <TaskList taskArray={taskArray}/>
             </div>
             <div className={classes.addBody} data-testid='addBody'>
-                <AddTask onAdd={addTask} data-testid='addButton'/>
+                <AddTask onAdd={addTask}/>
             </div>
         </div>
     )
