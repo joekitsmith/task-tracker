@@ -30,16 +30,6 @@ test("click Add button with filled text field closes dialog", () => {
     expect(dialog).toBeInTheDocument()
 })
 
-test("click Add button with filled text calls onAdd function", () => {
-    const mock = jest.fn()
-    const { getByTestId } = render(<AddTask onAdd={mock}/>)
-    fireEvent.click(getByTestId('dialogButton'))
-    const textField = getByTestId('newTask').querySelector('input')
-    fireEvent.change(textField, {target: { value: "example task"}})
-    fireEvent.click(getByTestId('addButton'))
-    expect(mock).toHaveBeenCalled()
-})
-
 test("click Add button with filled text calls onAdd function with text", () => {
     const mock = jest.fn()
     const { getByTestId } = render(<AddTask onAdd={mock}/>)
@@ -47,5 +37,6 @@ test("click Add button with filled text calls onAdd function with text", () => {
     const textField = getByTestId('newTask').querySelector('input')
     fireEvent.change(textField, {target: { value: "example task"}})
     fireEvent.click(getByTestId('addButton'))
+    expect(mock).toHaveBeenCalled()
     expect(mock).toHaveBeenCalledWith("example task")
 })
