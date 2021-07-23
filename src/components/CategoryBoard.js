@@ -5,14 +5,14 @@ import TaskList from './TaskList'
 import AddTask from './AddTask'
 
 const useStyles = makeStyles(() => ({
-    boardBox: {
+    board: {
         display: 'flex',
         flexDirection: 'column',
         height: 550,
         width: 400,
         border: "2px solid black",
     },
-    headerBox: {
+    header: {
         flex: 1,
         height: 100,
         backgroundColor: '#83d6f2',
@@ -20,13 +20,13 @@ const useStyles = makeStyles(() => ({
         fontSize: 32,
         textAlign: 'center'
     },
-    bodyBox: {
+    taskBody: {
         flex: 8,
         padding: 10,
         height: 400,
         backgroundColor: '#f6f6f9'
     },
-    addBox: {
+    addBody: {
         flex: 1,
         textAlign: 'center',
         height: 50,
@@ -39,15 +39,15 @@ function CategoryBoard({ categoryTitle, taskArray, addTask }) {
     const classes = useStyles()
 
     return (
-        <div className={classes.boardBox}>
-            <Typography className={classes.headerBox}>
+        <div className={classes.board} data-testid='board'>
+            <Typography className={classes.header} data-testid='header'>
                 {categoryTitle}
             </Typography> 
-            <div className={classes.bodyBox}>
-                <TaskList taskArray={taskArray}/>
+            <div className={classes.taskBody} data-testid='taskBody'>
+                <TaskList taskArray={taskArray} data-testid='taskList'/>
             </div>
-            <div className={classes.addBox}>
-                <AddTask onAdd={addTask}/>
+            <div className={classes.addBody} data-testid='addBody'>
+                <AddTask onAdd={addTask} data-testid='addButton'/>
             </div>
         </div>
     )
