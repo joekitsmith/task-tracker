@@ -1,25 +1,30 @@
 import React from 'react'
 import { render } from "@testing-library/react"
+import { Provider } from 'react-redux'
+import { store } from '../../state/store'
 import "@testing-library/jest-dom/extend-expect"
 import TaskList from '../TaskList'
+import initialState from '../../state/initial-task-list.json'
 
-test("list renders with correct text", () => {
-    const tasks = [{id:1, text: "Do this"}, {id:2, text: "Do that"}]
-    const { getAllByTestId } = render(<TaskList taskArray={tasks}/>)
+// Would like to test that:
+// - list renders with correct text in correct order
+// - empty task list renders with 'No tasks' string
+// How can I manipulate the state then check to see if task list is as expected? Should I even do this?
+
+const renderComponent = () => render(
+    <Provider store={store()}>
+        <TaskList/>
+    </Provider>
+)
+
+test("list renders with correct text in correct order", async () => {
+    const { getAllByTestId } = renderComponent()
     const taskList = getAllByTestId('task').map(li => li.textContent)
-    expect(taskList).toEqual(['Do this', 'Do that'])
+    const initialTasks = initialState.map(t => t.text)
+    expect(taskList).toEqual(initialTasks)
 })
 
-test("list renders with correct text in correct order", () => {
-    const tasks = [{id:1, text: "Do this"}, {id:2, text: "Do that"}]
-    const { getAllByTestId } = render(<TaskList taskArray={tasks}/>)
-    const taskList = getAllByTestId('task').map(li => li.textContent)
-    const taskString = tasks.map(t => t.text)
-    expect(taskList).toEqual(taskString)
-})
-
-test("empty task list renders with 'No tasks' string", () => {
-    const tasks = []
-    const {getByText} = render(<TaskList taskArray={tasks}/>)
-    expect(getByText(/No tasks/i)).toBeInTheDocument()
-})
+//test("empty task list renders with 'No tasks' string", async () => {
+//    const { getByText } = renderComponent()
+//    expect(getByText(/No tasks/i)).toBeInTheDocument()
+//})

@@ -1,30 +1,32 @@
 import React from 'react'
-import { render } from "@testing-library/react"
+import { Provider } from 'react-redux'
+import { render } from '@testing-library/react'
 import "@testing-library/jest-dom/extend-expect"
+import { store } from '../../state/store'
 import CategoryBoard from '../CategoryBoard'
 
+const renderComponent = () => render(
+    <Provider store={store()}>
+        <CategoryBoard categoryTitle="General"/>
+    </Provider>
+)
+
 test("category board renders", () => {
-    const mock = jest.fn()
-    const { getByTestId } = render(<CategoryBoard categoryTitle="" taskArray={[]} addTask={mock}/>)
+    const { getByTestId } = renderComponent()
     expect(getByTestId('board')).toBeInTheDocument()
 })
 
 test("category title displayed", () => {
-    const mock = jest.fn()
-    const { getByText } = render(<CategoryBoard categoryTitle="Test Category" taskArray={[]} addTask={mock}/>)
-    expect(getByText(/Test Category/i)).toBeInTheDocument()
+    const { getByText } = renderComponent()
+    expect(getByText(/General/i)).toBeInTheDocument()
 })
 
 test("task list displayed", () => {
-    const mock = jest.fn()
-    const tasks = [{id:1, text: "Do this"}, {id:2, text: "Do that"}]
-    const { getByText } = render(<CategoryBoard categoryTitle="" taskArray={tasks} addTask={mock}/>)
-    expect(getByText(/Do this/i)).toBeInTheDocument()
-    expect(getByText(/Do that/i)).toBeInTheDocument()
+    const { getByText } = renderComponent()
+    expect(getByText(/Finish JIRA boards/i)).toBeInTheDocument()
 })
 
-test("add task body rendered", () => {
-    const mock = jest.fn()
-    const { getByTestId } = render(<CategoryBoard categoryTitle="" taskArray={[]} addTask={mock}/>)
-    expect(getByTestId('addBody')).toBeInTheDocument()
+test("add task button rendered", () => {
+    const { getByText } = renderComponent()
+    expect(getByText(/ADD TASK/i)).toBeInTheDocument()
 })
