@@ -16,7 +16,7 @@ test("Dialog renders if open is true", async () => {
     const { getByRole } = renderComponent(mock)
     expect(getByRole('dialog')).toBeInTheDocument()
 })
-test("setOpen function false when Add button clicked", async () => {
+test("setOpen called when Add button clicked", async () => {
     const mock = jest.fn()
     const { getByRole } = render(<Provider store={store()}>
                                     <AddTaskDialog open={true} setOpen={mock}/>
