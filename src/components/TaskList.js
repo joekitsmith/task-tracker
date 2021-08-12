@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 import List from '@material-ui/core/List'
@@ -30,10 +29,6 @@ const TaskList = () => {
             ))}
         </List>
     )
-}
-
-TaskList.propTypes = {
-    tasks: PropTypes.array
 }
 
 export default TaskList
