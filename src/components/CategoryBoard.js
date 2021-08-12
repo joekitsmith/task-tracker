@@ -54,9 +54,7 @@ function CategoryBoard({ categoryTitle }) {
 }
 
 CategoryBoard.propTypes = {
-    categoryTitle: PropTypes.string,
-    taskArray: PropTypes.array,
-    addTask: PropTypes.func
+    categoryTitle: PropTypes.string
 }
 
 export default CategoryBoard
