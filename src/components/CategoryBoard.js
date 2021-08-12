@@ -34,7 +34,7 @@ const useStyles = makeStyles(() => ({
     }
 }))
 
-function CategoryBoard({ categoryTitle}) {
+function CategoryBoard({ categoryTitle }) {
 
     const classes = useStyles()
 
@@ -46,7 +46,7 @@ function CategoryBoard({ categoryTitle}) {
             <div className={classes.taskBody}>
                 <TaskList/>
             </div>
-            <div className={classes.addBody} data-testid='addBody'>
+            <div className={classes.addBody}>
                 <AddTask/>
             </div>
         </div>
