@@ -8,11 +8,9 @@ function AddTaskButton({ setOpen }) {
     }
 
     return(
-        <div>
-            <Button onClick={handleOpen}>
-                Add task
-            </Button>
-        </div>
+        <Button onClick={handleOpen}>
+            Add task
+        </Button>
     )
 }
 
