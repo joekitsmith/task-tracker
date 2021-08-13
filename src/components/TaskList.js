@@ -1,13 +1,21 @@
 import { useSelector } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
+import FormGroup from '@material-ui/core/FormGroup'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Checkbox from '@material-ui/core/Checkbox'
+import { useDispatch } from 'react-redux'
+import { bindActionCreators } from "redux"
+import { actionCreators } from "../state/index"
 
 const useStyles = makeStyles(() => ({
     list:{
         maxHeight: '100%',
-        overflow: 'auto'
+        overflow: 'auto',
+        marginLeft: 15,
+        marginTop: 10
+    },
+    task:{
+        marginBottom:5
     }
 }))
 
@@ -15,19 +23,30 @@ const TaskList = () => {
 
     const classes = useStyles()
 
+    const dispatch = useDispatch()
+    const { checkTaskAsCompleted } = bindActionCreators(actionCreators, dispatch)
+
+    const handleChange = (val) => {
+        checkTaskAsCompleted(val.target.name)
+    }
+
     const taskList = useSelector((taskList) => taskList.tasks)
 
     if (!taskList || !taskList.length) {
         return <div>No tasks</div>
     }
     return (
-        <List className={classes.list}>
-            {taskList.map((task, id) => (
-                <ListItem key={id}>
-                    <ListItemText id={id} primary={task.text} data-testid='task'/>
-                </ListItem>
+        <FormGroup className={classes.list}>
+            {taskList.map((task) => (
+                <FormControlLabel 
+                    key={task.id} 
+                    data-testid='task'
+                    className = {classes.task}
+                    control={<Checkbox checked={task.completed} onChange={handleChange} name={task.id.toString()} color="primary"/>}
+                    label={task.text}
+                />
             ))}
-        </List>
+        </FormGroup>
     )
 }
 
