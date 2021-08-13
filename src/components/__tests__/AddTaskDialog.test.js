@@ -1,5 +1,5 @@
 import React from 'react'
-import { fireEvent, render } from "@testing-library/react"
+import { fireEvent, render, screen } from "@testing-library/react"
 import { Provider } from 'react-redux'
 import { store } from '../../state/store'
 import "@testing-library/jest-dom/extend-expect"
@@ -12,17 +12,26 @@ const renderComponent = (setOpen) => render(
 )
 
 test("Dialog renders if open is true", async () => {
-    const mock = jest.fn()
-    const { getByRole } = renderComponent(mock)
-    expect(getByRole('dialog')).toBeInTheDocument()
+    renderComponent()
+    expect(screen.getByRole('dialog')).toBeInTheDocument()
 })
-test("setOpen called when Add button clicked", async () => {
+test("setOpen called 1 time when Add button clicked", async () => {
     const mock = jest.fn()
-    const { getByRole } = render(<Provider store={store()}>
-                                    <AddTaskDialog open={true} setOpen={mock}/>
-                                </Provider>
-                                )
-    const addButton = getByRole('button')
+    render(<Provider store={store()}>
+                <AddTaskDialog open={true} setOpen={mock}/>
+            </Provider>
+        )
+    const addButton = screen.getByRole('button')
     fireEvent.click(addButton)
-    expect(mock).toHaveBeenCalled()
+    expect(mock).toHaveBeenCalledTimes(1)
+})
+test("setOpen called with false when Add button clicked", async () => {
+    const mock = jest.fn()
+    render(<Provider store={store()}>
+                <AddTaskDialog open={true} setOpen={mock}/>
+            </Provider>
+        )
+    const addButton = screen.getByRole('button')
+    fireEvent.click(addButton)
+    expect(mock).toHaveBeenCalledWith(false)
 })
