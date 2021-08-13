@@ -15,14 +15,14 @@ const TaskList = () => {
 
     const classes = useStyles()
 
-    const state = useSelector((state) => state.tasks)
+    const taskList = useSelector((taskList) => taskList.tasks)
 
-    if (!state || !state.length) {
+    if (!taskList || !taskList.length) {
         return <div>No tasks</div>
     }
     return (
         <List className={classes.list}>
-            {state.map((task, id) => (
+            {taskList.map((task, id) => (
                 <ListItem key={id}>
                     <ListItemText id={id} primary={task.text} data-testid='task'/>
                 </ListItem>
