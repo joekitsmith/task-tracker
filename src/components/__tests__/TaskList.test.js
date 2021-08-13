@@ -1,15 +1,11 @@
 import React from 'react'
-import { render } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import { Provider } from 'react-redux'
+import * as redux from 'react-redux'
 import { store } from '../../state/store'
 import "@testing-library/jest-dom/extend-expect"
 import TaskList from '../TaskList'
-import initialState from '../../state/initial-task-list.json'
 
-// Would like to test that:
-// - list renders with correct text in correct order
-// - empty task list renders with 'No tasks' string
-// How can I manipulate the state then check to see if task list is as expected? Should I even do this?
 
 const renderComponent = () => render(
     <Provider store={store()}>
@@ -18,13 +14,20 @@ const renderComponent = () => render(
 )
 
 test("list renders with correct text in correct order", async () => {
-    const { getAllByTestId } = renderComponent()
-    const taskList = getAllByTestId('task').map(li => li.textContent)
-    const initialTasks = initialState.map(t => t.text)
-    expect(taskList).toEqual(initialTasks)
+    const testTasks = [{"id":1, "text":'Do this'}, {"id":2, "text":'Do that'}]
+    jest
+        .spyOn(redux, 'useSelector')
+        .mockImplementation(() => ( testTasks ))
+    renderComponent()
+    const taskList = screen.getAllByTestId('task').map(li => li.textContent)
+    expect(taskList).toEqual(["Do this", "Do that"])
 })
 
-//test("empty task list renders with 'No tasks' string", async () => {
-//    const { getByText } = renderComponent()
-//    expect(getByText(/No tasks/i)).toBeInTheDocument()
-//})
+test("empty task list renders with 'No tasks' string", async () => {
+    const testTasks = []
+    jest
+        .spyOn(redux, 'useSelector')
+        .mockImplementation((callback) => callback({ testTasks }))
+    renderComponent()
+    expect(screen.getByText(/No tasks/i)).toBeInTheDocument()
+})
