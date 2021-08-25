@@ -46,17 +46,17 @@ test("button enabled when text field filled with non-space characters", async ()
     renderComponent()
     const textField = screen.getByRole('textbox')
     fireEvent.change(textField, {target: { value: "example task"}})
-    expect(screen.getByRole('button')).not.toHaveAttribute('disabled')
+    expect(screen.getByRole('button')).toBeEnabled()
 })
 
 test("button disabled when text field not filled", async () => {
     renderComponent()
-    expect(screen.getByRole('button')).toHaveAttribute('disabled')
+    expect(screen.getByRole('button')).toBeDisabled()
 })
 
 test("button disabled when text field filled with only spaces", async () => {
     renderComponent()
     const textField = screen.getByRole('textbox')
     fireEvent.change(textField, {target: { value: "   "}})
-    expect(screen.getByRole('button')).toHaveAttribute('disabled')
+    expect(screen.getByRole('button')).toBeDisabled()
 })
