@@ -34,7 +34,7 @@ const useStyles = makeStyles(() => ({
     }
 }))
 
-function CategoryBoard({ categoryTitle, taskArray, addTask }) {
+function CategoryBoard({ categoryTitle }) {
 
     const classes = useStyles()
 
@@ -44,19 +44,17 @@ function CategoryBoard({ categoryTitle, taskArray, addTask }) {
                 {categoryTitle}
             </Typography> 
             <div className={classes.taskBody}>
-                <TaskList taskArray={taskArray}/>
+                <TaskList/>
             </div>
-            <div className={classes.addBody} data-testid='addBody'>
-                <AddTask onAdd={addTask}/>
+            <div className={classes.addBody}>
+                <AddTask/>
             </div>
         </div>
     )
 }
 
 CategoryBoard.propTypes = {
-    categoryTitle: PropTypes.string,
-    taskArray: PropTypes.array,
-    addTask: PropTypes.func
+    categoryTitle: PropTypes.string
 }
 
 export default CategoryBoard

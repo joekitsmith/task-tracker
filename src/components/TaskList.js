@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types'
+import { useSelector } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
@@ -11,26 +11,24 @@ const useStyles = makeStyles(() => ({
     }
 }))
 
-const TaskList = ({ taskArray }) => {
+const TaskList = () => {
 
     const classes = useStyles()
 
-    if (!taskArray || !taskArray.length) {
+    const taskList = useSelector((taskList) => taskList.tasks)
+
+    if (!taskList || !taskList.length) {
         return <div>No tasks</div>
     }
     return (
         <List className={classes.list}>
-            {taskArray.map((task, id) => (
+            {taskList.map((task, id) => (
                 <ListItem key={id}>
                     <ListItemText id={id} primary={task.text} data-testid='task'/>
                 </ListItem>
             ))}
         </List>
     )
-}
-
-TaskList.propTypes = {
-    tasks: PropTypes.array
 }
 
 export default TaskList
