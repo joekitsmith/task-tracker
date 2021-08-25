@@ -27,7 +27,38 @@ test("empty task list renders with 'No tasks' string", async () => {
     const testTasks = []
     jest
         .spyOn(redux, 'useSelector')
-        .mockImplementation((callback) => callback({ testTasks }))
+        .mockImplementation(() => ({ testTasks }))
     renderComponent()
     expect(screen.getByText(/No tasks/i)).toBeInTheDocument()
+})
+
+test("checkbox rendered", async () => {
+    const testTasks = [{"id":1, "text":"Do this", "completed":false}]
+    jest
+        .spyOn(redux, 'useSelector')
+        .mockImplementation(() => ( testTasks ))
+    renderComponent()
+    const check = screen.getByRole('checkbox')
+    expect(check).toBeInTheDocument()
+})
+
+
+test("checkbox unticked when completed is false", async () => {
+    const testTasks = [{"id":1, "text":"Do this", "completed":false}]
+    jest
+        .spyOn(redux, 'useSelector')
+        .mockImplementation(() => ( testTasks ))
+    renderComponent()
+    const check = screen.getByRole('checkbox')
+    expect(check).not.toBeChecked()
+})
+
+test("checkbox ticked when completed is true", async () => {
+    const testTasks = [{"id":1, "text":"Do this", "completed":true}]
+    jest
+        .spyOn(redux, 'useSelector')
+        .mockImplementation(() => ( testTasks ))
+    renderComponent()
+    const check = screen.getByRole('checkbox')
+    expect(check).toBeChecked()
 })
