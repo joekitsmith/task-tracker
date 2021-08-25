@@ -32,7 +32,8 @@ function AddTaskDialog({ open, setOpen }) {
     const handleAdd = () => {
         addTaskToList(text)
         setOpen(false)
-    }  
+        setText("")
+    }
 
     return(
         <div>
@@ -47,7 +48,7 @@ function AddTaskDialog({ open, setOpen }) {
                         />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleAdd}>
+                    <Button disabled={!(text.length&&text.trim().length)} onClick={handleAdd}>
                         Add
                     </Button>
                 </DialogActions>
