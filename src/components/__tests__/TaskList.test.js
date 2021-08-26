@@ -27,7 +27,7 @@ test("empty task list renders with 'No tasks' string", async () => {
     const testTasks = []
     jest
         .spyOn(redux, 'useSelector')
-        .mockImplementation(() => ({ testTasks }))
+        .mockImplementation(() => ( testTasks ))
     renderComponent()
     expect(screen.getByText(/No tasks/i)).toBeInTheDocument()
 })
