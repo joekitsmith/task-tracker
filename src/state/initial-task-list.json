@@ -1,18 +1,22 @@
 [
     {
       "id": 1,
-      "text": "Finish JIRA boards"
+      "text": "Finish JIRA boards",
+      "completed": false
     },
     {
       "id": 2,
-      "text": "Update readme to reflect changes"
+      "text": "Update readme to reflect changes",
+      "completed": false
     },
     {
       "id":3,
-      "text": "Test ML model on new data"
+      "text": "Test ML model on new data",
+      "completed": false
     },
     {
       "id":4,
-      "text": "Submit holiday request"
+      "text": "Submit holiday request",
+      "completed": false
     }
   ]
