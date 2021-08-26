@@ -1,8 +1,8 @@
 import initialState from '../initial-task-list.json'
 
-const removeIdFromArray = (array, id) => {
+export const removeIdFromArray = (array, id) => {
     return array.map(task => {
-        if (task.id !== id) return task
+        if (task.id != id) return task
         return {
             ...task,
             completed: !task.completed,
@@ -24,4 +24,4 @@ const taskReducer = (
     }
 }
 
-export { taskReducer, removeIdFromArray }
+export default taskReducer
