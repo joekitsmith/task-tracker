@@ -1,13 +1,13 @@
 import initialState from '../initial-task-list.json'
 
 const removeIdFromArray = (array, id) => {
-    id = parseInt(id)
-    for(var i=0; i<array.length; i++) {
-        if(array[i].id == id) {
-            array[i].completed = !(array[i].completed)
+    return array.map(task => {
+        if (task.id !== id) return task
+        return {
+            ...task,
+            completed: !task.completed,
         }
-    }
-    return [...array]
+    })
 }
 
 const taskReducer = (
@@ -24,4 +24,4 @@ const taskReducer = (
     }
 }
 
-export default taskReducer
+export { taskReducer, removeIdFromArray }
