@@ -1,8 +1,9 @@
 import initialState from '../initial-task-list.json'
 
 export const removeIdFromArray = (array, id) => {
+    const id_int = parseInt(id)
     return array.map(task => {
-        if (task.id != id) return task
+        if (task.id !== id_int) return task
         return {
             ...task,
             completed: !task.completed,
