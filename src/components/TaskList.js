@@ -42,6 +42,7 @@ const TaskList = () => {
                     key={task.id} 
                     data-testid='task'
                     className = {classes.task}
+                    style = {{textDecoration : task.completed ? 'line-through' : 'none'}}
                     control={<Checkbox checked={task.completed} onChange={handleChange} name={task.id.toString()} color="primary"/>}
                     label={task.text}
                 />
