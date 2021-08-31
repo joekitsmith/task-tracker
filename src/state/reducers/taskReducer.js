@@ -1,10 +1,10 @@
 import initialState from '../initial-task-list.json'
 
-export const reorderTasks = (array) => {
+export const reorderTasks = (taskArray) => {
     // Split by completed/not completed then sort by ID
 
-    const completed = array.filter(x => x.completed)
-    const notCompleted = array.filter(x => !x.completed)
+    const completed = taskArray.filter(task => task.completed)
+    const notCompleted = taskArray.filter(task => !task.completed)
 
     completed.sort((a,b) => a.id - b.id)
     notCompleted.sort((a,b) => a.id - b.id)
@@ -23,10 +23,9 @@ export const changeTaskCompleted = (array, id) => {
      })
 }
 
-const completeTask = (array, id) => {
-    array = changeTaskCompleted(array, id)
-    array = reorderTasks(array)
-    return array
+const completeTask = (taskArray, id) => {
+    const completedTasks = changeTaskCompleted(taskArray, id)
+    return reorderTasks(completedTasks)
 }
 
 const taskReducer = (
